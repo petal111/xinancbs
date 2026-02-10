@@ -1,0 +1,29 @@
+{
+  "name": "swjtu-ai-platform",
+  "version": "1.0.0",
+  "description": "西南交通大学出版社AI赋能平台",
+  "type": "module",
+  "main": "src/js/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "ai",
+    "railway",
+    "platform"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.2"
+  }
+}

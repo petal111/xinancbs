@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西南交通大学出版社 AI赋能平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #0A87E2;
+            --primary-dark: #0868b3;
+            --bg-dark: #0a0e27;
+            --bg-card: rgba(255, 255, 255, 0.03);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0A87E2;
+            border-radius: 4px;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(10, 135, 226, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(10, 135, 226, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(10, 135, 226, 0.5);
+            box-shadow: 0 20px 40px rgba(10, 135, 226, 0.2);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0A87E2 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Hero Background Animation */
+        .hero-bg {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(10, 135, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(10, 135, 226, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Animated Grid */
+        .grid-lines {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(rgba(10, 135, 226, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 135, 226, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Train Animation */
+        .train-container {
+            position: absolute;
+            bottom: 10%;
+            left: -100%;
+            animation: trainMove 25s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes trainMove {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #0A87E2 0%, #0868b3 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(10, 135, 226, 0.4);
+        }
+        
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #0A87E2;
+            background: rgba(10, 135, 226, 0.1);
+        }
+        
+        /* Glow Effect */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(10, 135, 226, 0.4) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        
+        /* Stats Counter */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Navigation Blur */
+        .nav-blur {
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Section Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Particle Canvas */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        /* Pulse Animation */
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid rgba(10, 135, 226, 0.5);
+            border-radius: 50%;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        /* Tech Icon Hover */
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        .tech-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            color: #0A87E2;
+        }
+        
+        /* Loading Animation */
+        .loading-bar {
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #0A87E2, #00d4ff);
+            transition: width 0.3s ease;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0A87E2] to-[#0868b3] flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                    <i data-lucide="train-front" class="w-6 h-6 text-white"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold tracking-tight">西南交通大学出版社</span>
+                    <span class="text-xs text-gray-400 tracking-widest uppercase">AI Empowerment Platform</span>
+                </div>
+            </div>
+            
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-gray-300 hover:text-[#0A87E2] transition-colors relative group">
+                    首页
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0A87E2] transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#features" class="text-sm font-medium text-gray-300 hover:text-[#0A87E2] transition-colors relative group">
+                    AI能力
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0A87E2] transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#tech" class="text-sm font-medium text-gray-300 hover:text-[#0A87E2] transition-colors relative group">
+                    技术架构
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0A87E2] transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-[#0A87E2] transition-colors relative group">
+                    关于我们
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0A87E2] transition-all group-hover:w-full"></span>
+                </a>
+            </div>
+            
+            <!-- CTA -->
+            <div class="flex items-center gap-4">
+                <button class="hidden md:flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+                    <i data-lucide="sun" class="w-4 h-4"></i>
+                </button>
+                <button class="btn-primary px-6 py-2.5 rounded-full text-sm font-semibold text-white flex items-center gap-2">
+                    <span>登录平台</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+        <div class="grid-lines"></div>
+        <canvas id="particles"></canvas>
+        
+        <!-- Decorative Elements -->
+        <div class="glow top-1/4 left-1/4"></div>
+        <div class="glow bottom-1/4 right-1/4" style="background: radial-gradient(circle, rgba(10, 135, 226, 0.2) 0%, transparent 70%);"></div>
+        
+        <!-- Animated Train Silhouette -->
+        <div class="train-container">
+            <svg width="600" height="120" viewBox="0 0 600 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-30">
+                <path d="M50 80 Q50 60 70 60 L200 60 Q220 60 220 80 L220 100 L50 100 Z" fill="url(#train-gradient)" />
+                <path d="M230 70 L580 70 Q590 70 590 80 L590 100 L230 100 Z" fill="url(#train-gradient)" />
+                <circle cx="100" cy="100" r="15" fill="#1e293b" />
+                <circle cx="160" cy="100" r="15" fill="#1e293b" />
+                <circle cx="300" cy="100" r="15" fill="#1e293b" />
+                <circle cx="400" cy="100" r="15" fill="#1e293b" />
+                <circle cx="500" cy="100" r="15" fill="#1e293b" />
+                <defs>
+                    <linearGradient id="train-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#0A87E2;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#0A87E2;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 reveal">
+                <span class="w-2 h-2 rounded-full bg-[#0A87E2] animate-pulse"></span>
+                <span class="text-sm text-gray-300 tracking-wide">新一代轨道交通人工智能基础设施</span>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight reveal">
+                <span class="block text-white mb-2">"智轨未来"</span>
+                <span class="gradient-text">AI智慧服务平台</span>
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed reveal">
+                依托西南交通大学百年轨道交通学科优势，融合大模型与知识图谱技术<br>
+                赋能智慧交通，智领未来
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+                <button class="btn-primary px-8 py-4 rounded-full text-base font-semibold text-white flex items-center gap-3 w-full sm:w-auto justify-center">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    <span>开启AI旅程</span>
+                </button>
+                <button class="btn-secondary px-8 py-4 rounded-full text-base font-semibold text-white flex items-center gap-3 w-full sm:w-auto justify-center">
+                    <span>了解更多</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Stats Preview -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto reveal">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">100万+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">知识节点</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">50+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">AI模型</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">99.9%</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">服务可用性</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">24/7</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">智能服务</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-gray-500"></i>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section id="features" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A87E2]/10 border border-[#0A87E2]/20 text-[#0A87E2] text-sm mb-4">
+                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                    <span>核心能力</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">AI赋能知识服务</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">基于深度学习的多模态内容理解，构建轨道交通领域最专业的智能知识引擎</p>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#0A87E2]/10 rounded-full blur-3xl transform translate-x-16 -translate-y-16 group-hover:bg-[#0A87E2]/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="search" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">智能语义检索</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">基于大模型的自然语言理解，实现意图识别与精准内容匹配，支持多轮对话式检索</p>
+                    <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>了解详情</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#0A87E2]/10 rounded-full blur-3xl transform translate-x-16 -translate-y-16 group-hover:bg-[#0A87E2]/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="network" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">知识图谱构建</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">自动抽取实体关系，构建轨道交通领域知识图谱，实现知识关联与推理</p>
+                    <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>了解详情</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#0A87E2]/10 rounded-full blur-3xl transform translate-x-16 -translate-y-16 group-hover:bg-[#0A87E2]/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="wand-2" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">智能内容生成</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AIGC辅助内容创作，支持智能摘要、多语言翻译、风格改写与自动排版</p>
+                    <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>了解详情</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#0A87E2]/10 rounded-full blur-3xl transform translate-x-16 -translate-y-16 group-hover:bg-[#0A87E2]/20 transition-all"></div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="bot" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">数字人服务</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AI数字人客服与讲师，提供7×24小时智能问答与个性化学习辅导</p>
+                    <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>了解详情</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A87E2]/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A87E2]/10 border border-[#0A87E2]/20 text-[#0A87E2] text-sm mb-6">
+                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        <span>技术架构</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        全栈AI技术<br>
+                        <span class="gradient-text">驱动知识服务升级</span>
+                    </h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        采用云原生架构，融合计算机视觉、自然语言处理、知识图谱等前沿技术，
+                        构建高可用、高性能的智能出版服务平台。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-[#0A87E2]/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-[#0A87E2]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">大语言模型 (LLM)</h4>
+                                <p class="text-sm text-gray-400">基于Transformer架构的领域专用模型，支持长文本理解与生成</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-[#0A87E2]/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-[#0A87E2]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">多模态理解</h4>
+                                <p class="text-sm text-gray-400">图文音视频统一表征学习，实现跨模态内容检索与生成</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-[#0A87E2]/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-[#0A87E2]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">实时知识增强 (RAG)</h4>
+                                <p class="text-sm text-gray-400">检索增强生成技术，确保AI回答的准确性与时效性</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Visual -->
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#0A87E2]/20 to-purple-500/20 rounded-3xl blur-3xl"></div>
+                    <div class="relative glass rounded-3xl p-8 border border-[#0A87E2]/20">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="brain" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">PyTorch</span>
+                            </div>
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="database" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">Vector DB</span>
+                            </div>
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="cloud" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">Kubernetes</span>
+                            </div>
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="code-2" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">Python</span>
+                            </div>
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="server" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">GPU Cluster</span>
+                            </div>
+                            <div class="tech-icon flex flex-col items-center gap-3 p-4 rounded-xl bg-white/5 cursor-pointer">
+                                <i data-lucide="shield" class="w-8 h-8 text-gray-400"></i>
+                                <span class="text-xs text-gray-400">Security</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Decorative Code Block -->
+                        <div class="mt-6 p-4 rounded-lg bg-black/30 font-mono text-xs text-gray-400 overflow-hidden">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                            </div>
+                            <div class="text-[#0A87E2]">$</div>
+                            <div class="typing-effect">Initializing AI Knowledge Engine...</div>
+                            <div class="mt-2 text-green-400">> Model loaded: RailGPT-7B</div>
+                            <div class="text-green-400">> Vector index: 1,024,768 nodes</div>
+                            <div class="text-green-400">> API Status: Online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center reveal">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="100">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">TB 知识数据</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="50">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">+ AI算法模型</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="1000">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">万+ 日处理请求</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="99">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">.9% 准确率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0A87E2]/10 via-transparent to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">准备好体验<br>AI赋能的未来了吗？</h2>
+            <p class="text-xl text-gray-400 mb-10">加入西南交通大学出版社AI平台，开启智慧知识服务新时代</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="btn-primary px-10 py-4 rounded-full text-lg font-semibold text-white flex items-center gap-3">
+                    <span>立即开始</span>
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </button>
+                <button class="btn-secondary px-10 py-4 rounded-full text-lg font-semibold text-white">
+                    联系演示
+                </button>
+            </div>
+            
+            <!-- Trust Badges -->
+            <div class="mt-16 flex items-center justify-center gap-8 opacity-50">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    <span class="text-sm">数据安全合规</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="lock" class="w-5 h-5"></i>
+                    <span class="text-sm">隐私保护</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                    <span class="text-sm">ISO认证</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0A87E2] to-[#0868b3] flex items-center justify-center">
+                            <i data-lucide="train-front" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-lg">西南交通大学出版社</div>
+                            <div class="text-xs text-gray-500">AI Empowerment Platform</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        秉承"竢实扬华、自强不息"的交大精神，致力于轨道交通领域知识服务的智能化升级，
+                        打造行业领先的AI赋能平台。
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">平台服务</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">智能检索</a></li>
+                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">知识图谱</a></li>
+                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">AIGC创作</a></li>
+                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">数字人服务</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">联系我们</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            <span>四川省成都市金牛区</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <span>ai@swjtu.edu.cn</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            <span>028-8760xxxx</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-sm text-gray-500">
+                    © 2024 西南交通大学出版社. All rights reserved.
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-blur');
+            } else {
+                navbar.classList.remove('nav-blur');
+            }
+        });
+        
+        // Reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((element, index) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: 'power3.out'
+            });
+        });
+        
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            gsap.to(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 85%',
+                },
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                ease: 'power2.out',
+                onUpdate: function() {
+                    if (target === 99) {
+                        stat.innerHTML = parseFloat(this.targets()[0].innerHTML).toFixed(1) + '%';
+                    } else if (target === 1000) {
+                        stat.innerHTML = Math.round(this.targets()[0].innerHTML) + '万+';
+                    } else {
+                        stat.innerHTML = Math.round(this.targets()[0].innerHTML) + (target === 100 ? 'TB' : '+');
+                    }
+                }
+            });
+        });
+        
+        // Particle System
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(10, 135, 226, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(window.innerWidth / 10, 100);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Draw connections
+            particles.forEach((a, index) => {
+                particles.slice(index + 1).forEach(b => {
+                    const distance = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(10, 135, 226, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Mouse parallax effect for hero section
+        const heroSection = document.getElementById('home');
+        heroSection.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            gsap.to('.glow', {
+                x: x,
+                y: y,
+                duration: 1,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Typing effect for code block
+        const typingElements = document.querySelectorAll('.typing-effect');
+        typingElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50);
+        });
+    </script>
+</body>
+</html>
