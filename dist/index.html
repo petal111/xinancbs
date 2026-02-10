@@ -80,7 +80,7 @@
         /* Hero Background Animation */
         
         .hero-bg {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
+            background: url('/homepage/assets/bg-C6WPj9JA.png') center/cover no-repeat;
             position: relative;
             overflow: hidden;
         }
@@ -93,6 +93,7 @@
             right: 0;
             bottom: 0;
             background: 
+                linear-gradient(to bottom, rgba(10, 14, 39, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%),
                 radial-gradient(circle at 20% 50%, rgba(10, 135, 226, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(10, 135, 226, 0.1) 0%, transparent 50%);
             pointer-events: none;
@@ -260,12 +261,11 @@
             <!-- Logo -->
             <div class="flex items-center gap-3 cursor-pointer group">
                 <div class="flex items-center gap-2 transform group-hover:scale-105 transition-transform">
-                    <img src="/assets/logo-10f7jrGH.png" alt="Logo" class="h-10 w-auto">
-                    <img src="/assets/logo_1-CYP-Sz4X.png" alt="Logo" class="h-10 w-auto">
+                    <img src="/homepage/assets/logo-10f7jrGH.png" alt="Logo" class="h-10 w-auto">
+                    <img src="/homepage/assets/logo_1-CYP-Sz4X.png" alt="Logo" class="h-10 w-auto">
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-lg font-bold tracking-tight">西南交通大学出版社</span>
-                    <span class="text-xs text-gray-400 tracking-widest uppercase">AI Empowerment Platform</span>
+                    <span class="text-xl font-bold tracking-tight">智能出版融合创新平台</span>
                 </div>
             </div>
             
@@ -291,13 +291,11 @@
             
             <!-- CTA -->
             <div class="flex items-center gap-4">
-                <button class="hidden md:flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
-                    <i data-lucide="sun" class="w-4 h-4"></i>
-                </button>
-                <button class="btn-primary px-6 py-2.5 rounded-full text-sm font-semibold text-white flex items-center gap-2">
-                    <span>登录平台</span>
+
+                <a href="http://xnjdcbs.edusynq.cn" class="btn-primary px-6 py-2.5 rounded-full text-sm font-semibold text-white flex items-center gap-2">
+                    <span>进入平台</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
+                </a>
             </div>
         </div>
     </nav>
@@ -340,7 +338,7 @@
             <!-- Main Title -->
             <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight reveal">
                 <span class="block text-white mb-2">"智轨未来"</span>
-                <span class="gradient-text">AI智慧服务平台</span>
+                <span class="gradient-text">智能出版融合创新平台</span>
             </h1>
             
             <!-- Subtitle -->
@@ -349,35 +347,31 @@
                 赋能智慧交通，智领未来
             </p>
             
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
-                <button class="btn-primary px-8 py-4 rounded-full text-base font-semibold text-white flex items-center gap-3 w-full sm:w-auto justify-center">
-                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+            <!-- CTA Button -->
+            <div class="flex items-center justify-center reveal">
+                <a href="http://xnjdcbs.edusynq.cn" class="btn-primary px-12 py-6 rounded-full text-xl font-semibold text-white flex items-center gap-4 justify-center">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
                     <span>开启AI旅程</span>
-                </button>
-                <button class="btn-secondary px-8 py-4 rounded-full text-base font-semibold text-white flex items-center gap-3 w-full sm:w-auto justify-center">
-                    <span>了解更多</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                </button>
+                </a>
             </div>
             
             <!-- Stats Preview -->
             <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto reveal">
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">100万+</div>
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">10万+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">知识切片</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">5万+</div>
                     <div class="text-xs text-gray-500 uppercase tracking-wider">知识节点</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">50+</div>
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">AI模型</div>
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">5+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">大语言模型</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">99.9%</div>
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">服务可用性</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">24/7</div>
-                    <div class="text-xs text-gray-500 uppercase tracking-wider">智能服务</div>
+                    <div class="text-3xl font-bold text-[#0A87E2] mb-1">20+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">数字分身</div>
                 </div>
             </div>
         </div>
@@ -397,7 +391,7 @@
                     <i data-lucide="cpu" class="w-4 h-4"></i>
                     <span>核心能力</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">AI赋能知识服务</h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">AI赋能知识出版服务</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">基于深度学习的多模态内容理解，构建轨道交通领域最专业的智能知识引擎</p>
             </div>
             
@@ -412,7 +406,7 @@
                     <h3 class="text-xl font-bold mb-3">智能语义检索</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">基于大模型的自然语言理解，实现意图识别与精准内容匹配，支持多轮对话式检索</p>
                     <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>了解详情</span>
+                        
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -426,7 +420,7 @@
                     <h3 class="text-xl font-bold mb-3">知识图谱构建</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">自动抽取实体关系，构建轨道交通领域知识图谱，实现知识关联与推理</p>
                     <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>了解详情</span>
+                        
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -438,9 +432,9 @@
                         <i data-lucide="wand-2" class="w-7 h-7 text-[#0A87E2]"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">智能内容生成</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AIGC辅助内容创作，支持智能摘要、多语言翻译、风格改写与自动排版</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AIGC辅助内容创作，支持智能摘要、多语言翻译、智能写作</p>
                     <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>了解详情</span>
+                        
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -452,9 +446,9 @@
                         <i data-lucide="bot" class="w-7 h-7 text-[#0A87E2]"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">数字人服务</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AI数字人客服与讲师，提供7×24小时智能问答与个性化学习辅导</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">AI数字人课程创作，提供7×24小时智能问答与个性化学习辅导</p>
                     <div class="flex items-center gap-2 text-[#0A87E2] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>了解详情</span>
+                       
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -464,7 +458,10 @@
 
     <!-- Tech Stack Section -->
     <section id="tech" class="py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A87E2]/5 to-transparent"></div>
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style="background-image: url('/homepage/assets/tech_bg-DSIdrcdH.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0A1027]/90 via-[#0A1027]/85 to-[#0A1027]/90 pointer-events-none"></div>
+        </div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Left Content -->
@@ -563,44 +560,17 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-20 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center reveal">
-                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="100">0</div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">TB 知识数据</div>
-                </div>
-                <div class="text-center reveal">
-                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="50">0</div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">+ AI算法模型</div>
-                </div>
-                <div class="text-center reveal">
-                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="1000">0</div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">万+ 日处理请求</div>
-                </div>
-                <div class="text-center reveal">
-                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2 stat-number" data-target="99">0</div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">.9% 准确率</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="py-32 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-[#0A87E2]/10 via-transparent to-transparent"></div>
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
-            <h2 class="text-4xl md:text-6xl font-bold mb-6">准备好体验<br>AI赋能的未来了吗？</h2>
-            <p class="text-xl text-gray-400 mb-10">加入西南交通大学出版社AI平台，开启智慧知识服务新时代</p>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">准备好体验<br>AI赋能出版的未来了吗？</h2>
+            <p class="text-xl text-gray-400 mb-10">开启智慧知识服务新时代</p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button class="btn-primary px-10 py-4 rounded-full text-lg font-semibold text-white flex items-center gap-3">
+                <a href="http://xnjdcbs.edusynq.cn" class="btn-primary px-10 py-4 rounded-full text-lg font-semibold text-white flex items-center gap-3">
                     <span>立即开始</span>
                     <i data-lucide="zap" class="w-5 h-5"></i>
-                </button>
-                <button class="btn-secondary px-10 py-4 rounded-full text-lg font-semibold text-white">
-                    联系演示
-                </button>
+                </a>
             </div>
             
             <!-- Trust Badges -->
@@ -621,70 +591,94 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-32 relative">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style="background-image: url('/homepage/assets/about_me-CDLagSbJ.png');">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0A1027]/90 via-[#0A1027]/85 to-[#0A1027]/95 pointer-events-none"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A87E2]/10 border border-[#0A87E2]/20 text-[#0A87E2] text-sm mb-4">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>关于我们</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">西南交通大学出版社</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">智能出版融合创新平台，深耕轨道交通知识服务，以AI之力赋能出版升级</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="history" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">历史沿革</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">西南交通大学出版社成立于1985年，是国家一级出版社，依托西南交通大学百年轨道交通学科优势，专注于轨道交通领域的学术出版与知识服务。</p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="target" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">发展愿景</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">以AI技术赋能知识服务，构建轨道交通领域最专业的智能知识引擎，成为行业领先的智慧出版服务提供商。</p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A87E2]/20 to-[#0A87E2]/5 flex items-center justify-center mb-6 border border-[#0A87E2]/20">
+                        <i data-lucide="users" class="w-7 h-7 text-[#0A87E2]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">团队优势</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">拥有一支由出版专家、技术专家和领域学者组成的专业团队，具备丰富的出版经验和技术创新能力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="border-t border-white/5 pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-2">
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
                     <div class="flex items-center gap-3 mb-6">
                         <div class="flex items-center gap-2">
-                            <img src="/assets/logo-10f7jrGH.png" alt="Logo" class="h-10 w-auto">
-                            <img src="/assets/logo_1-CYP-Sz4X.png" alt="Logo" class="h-10 w-auto">
+                            <img src="/homepage/assets/logo-10f7jrGH.png" alt="Logo" class="h-10 w-auto">
+                            <img src="/homepage/assets/logo_1-CYP-Sz4X.png" alt="Logo" class="h-10 w-auto">
                         </div>
                         <div>
-                            <div class="font-bold text-lg">西南交通大学出版社</div>
-                            <div class="text-xs text-gray-500">AI Empowerment Platform</div>
+                            <div class="font-bold text-xl">智能出版融合创新平台</div>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        秉承"竢实扬华、自强不息"的交大精神，致力于轨道交通领域知识服务的智能化升级，
-                        打造行业领先的AI赋能平台。
+                        秉承"竢实扬华、自强不息"的交大精神，致力于轨道交通领域知识服务的智能化升级，打造行业领先的AI赋能平台。
                     </p>
                 </div>
                 
-                <div>
-                    <h4 class="font-semibold mb-4 text-white">平台服务</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">智能检索</a></li>
-                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">知识图谱</a></li>
-                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">AIGC创作</a></li>
-                        <li><a href="#" class="hover:text-[#0A87E2] transition-colors">数字人服务</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4 text-white">联系我们</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                            <span>四川省成都市金牛区</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
-                            <span>ai@swjtu.edu.cn</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
-                            <span>028-8760xxxx</span>
-                        </li>
-                    </ul>
+                <div class="flex justify-end pr-8">
+                    <div class="max-w-sm">
+                        <h4 class="font-semibold mb-4 text-white">联系我们</h4>
+                        <ul class="space-y-3 text-sm text-gray-400">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                <span>四川省成都市金牛区交大智慧城</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4"></i>
+                                <span>ai@swjtu.edu.cn</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4"></i>
+                                <span>028-87600554</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
             <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="text-sm text-gray-500">
                     © 2024 西南交通大学出版社. All rights reserved.
-                </div>
-                <div class="flex items-center gap-6">
-                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
-                        <i data-lucide="github" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-[#0A87E2] transition-colors">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
-                    </a>
                 </div>
             </div>
         </div>
